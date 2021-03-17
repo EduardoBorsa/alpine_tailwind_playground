@@ -19,6 +19,8 @@ defmodule TailwindPlaygroundWeb.Router do
 
     live "/", PageLive, :index
     live "/modal", ModalLive, :index
+    live "/spotify", SpotifyLive, :index
+    live "/alpine", AlpineLive, :index
   end
 
   # Other scopes may use custom stacks.

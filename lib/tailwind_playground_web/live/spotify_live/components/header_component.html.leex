@@ -1,0 +1,38 @@
+<div class="fixed flex w-full px-3 py-4 bg-black md:px-20">
+  <div class="container flex items-center mx-auto">
+    <div>
+      <a href="#">
+        <img src="<%= Routes.static_path(@socket, "/images/spotify-logo.png") %>" 
+            alt="Spotify"
+            class="w-20 md:w-125px"/>
+      </a>
+    </div>
+    <div class="flex justify-end flex-1 text-3xl text-white md:hidden">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="items-end flex-1 hidden font-bold text-white md:flex">
+      <nav class="flex-1">
+        <ul class="flex justify-end flex-1">
+          <li class="px-4">
+            <a href="#" class="text-sm hover:text-hoverspt">Premium</a>
+          </li>
+          <li class="px-4">
+            <a href="#" class="text-sm hover:text-hoverspt">Ajuda</a>
+          </li>
+          <li class="px-4">
+            <a href="#" class="text-sm hover:text-hoverspt">Baixar</a>
+          </li>
+          <li class="px-4">
+            <span class="border-r border-white"></span>
+          </li>
+          <li class="px-4">
+            <a href="#" class="text-sm hover:text-hoverspt">Inscrever-se</a>
+          </li>
+          <li class="px-4">
+            <a href="#" class="text-sm hover:text-hoverspt">Log In</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

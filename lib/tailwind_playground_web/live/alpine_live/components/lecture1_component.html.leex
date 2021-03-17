@@ -1,0 +1,18 @@
+<div x-data="{ nombre: 'Mario', email: 'mario@email.com'}" x-init="nombre = 'Mario giron'">
+    <p x-text="nombre"></p>
+</div>
+
+<div x-data="mainComp()">
+  <p x-text="usuario"></p>
+</div>
+
+<script>
+  function mainComp() {
+        return {
+            usuario: 'Hola',
+            start: function() {
+                console.log('Arranca la mandanga!')
+              }
+          }
+      }
+</script>
