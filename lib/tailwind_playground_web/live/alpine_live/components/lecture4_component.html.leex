@@ -1,0 +1,30 @@
+<div x-data="main()" >
+  <p x-text="texto"></p>
+  <input type="text" x-model="texto">
+  <button @click="onClick()"></button>
+</div>
+
+
+<style>
+input {
+  border: 1px solid black;
+}
+.active {
+  border: 1px solid black;
+  background-color: green;
+}
+.inactive {
+  border: 0;
+  background-color: yellow;
+}
+</style>
+<script>
+  function main() {
+        return {
+            texto: '',
+            onClick: function() {
+                console.log(this.texto)
+              }
+          }
+    }
+</script>

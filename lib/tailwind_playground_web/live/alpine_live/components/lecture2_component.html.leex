@@ -1,0 +1,25 @@
+<div x-data="main()" >
+  <p x-text="open"></p>
+  <button x-on:click="open = !open">CAMBIA!</button>
+  <p x-show="open">HOLA MUNDO ALPINE</p>
+  <p x-bind:class="{ 'active': open, 'inactive': !open }"> SOME TEXT </p>
+  <button x-bind:disabled="!open">PULSA</button>
+</div>
+
+<style>
+.active {
+  border: 1px solid black;
+  background-color: green;
+}
+.inactive {
+  border: 0;
+  background-color: yellow;
+}
+</style>
+<script>
+  function main() {
+        return {
+            open: false
+          }
+      }
+</script>

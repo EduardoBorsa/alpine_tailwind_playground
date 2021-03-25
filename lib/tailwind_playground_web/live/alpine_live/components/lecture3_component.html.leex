@@ -1,0 +1,54 @@
+<div x-data="main()" >
+  <button x-on:click="onButtonClick1(event)"
+          x-on:mouseover="onMouseOver(event)"
+          x-on:mouseout="onMouseOut(event)">
+    Boton de tocar
+  </button>
+</div>
+
+<div x-data="secondary()">
+  <p x-text="texto"></p>
+  <input style="border: 1px solid black;" type="text" x-on:keydown.enter="onKeyPressEnter(event)">
+  <input style="border: 1px solid black;"type="text" x-on:input="onInput(event)">
+  <input style="border: 1px solid black;"type="checkbox" x-on:click.prevent>
+</div>
+
+<style>
+.active {
+  border: 1px solid black;
+  background-color: green;
+}
+.inactive {
+  border: 0;
+  background-color: yellow;
+}
+</style>
+<script>
+  function main() {
+        return {
+            onButtonClick1: function (event) {
+                console.log("Se ha pulsado el botoncico");
+                console.log(event);
+              },
+            onMouseOver: function(event) {
+                event.target.style.backgroundColor = 'lightgreen';
+              },
+            onMouseOut: function(event) {
+                event.target.style.backgroundColor = 'yellow';
+              }
+
+          }
+    }
+  function secondary() {
+      return {
+          texto: '',
+          onKeyPressEnter: function(event) {
+              console.log(event)
+              this.texto = event.target.value;
+            },
+          onInput: function(event) {
+              this.texto = event.target.value;
+            }
+        }
+    }
+</script>

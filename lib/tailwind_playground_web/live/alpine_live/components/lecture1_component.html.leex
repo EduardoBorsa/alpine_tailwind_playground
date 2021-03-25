@@ -2,16 +2,17 @@
     <p x-text="nombre"></p>
 </div>
 
-<div x-data="mainComp()">
+<div x-data="mainComp()" x-init="start()">
   <p x-text="usuario"></p>
 </div>
 
 <script>
   function mainComp() {
         return {
-            usuario: 'Hola',
+            usuario: null,
             start: function() {
-                console.log('Arranca la mandanga!')
+                console.log('Arranca la mandanga!');
+                this.usuario = 'Benito';
               }
           }
       }
