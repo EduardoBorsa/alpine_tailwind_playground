@@ -24,6 +24,7 @@ defmodule TailwindPlaygroundWeb.Router do
     live "/svgs", SVGLive.Index, :index
     live "/playground", PlaygroundLive.Index, :index
     live "/twlabs", TwlabsLive.Index, :index
+    live "/tw_ui", TwUILive.Index, :index
   end
 
   # Other scopes may use custom stacks.

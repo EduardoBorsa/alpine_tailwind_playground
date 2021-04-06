@@ -2,4 +2,12 @@
   .btn-indigo {
     @apply bg-indigo-700 text-white font-bold py-2 px-4 rounded;
   }
+
+  .btn-primary {
+    @apply inline-block px-5 py-3 text-sm font-semibold tracking-wider text-white uppercase bg-indigo-500 rounded-lg shadow-lg active:bg-indigo-600 hover:bg-indigo-400 hover:-translate-y-1 transform transition focus:outline-none focus:ring focus:ring-offset-2 focus:ring-indigo-500 focus:ring-opacity-50 sm:text-base
+  }
+
+  .btn-secondary {
+    @apply inline-block px-5 py-3 text-sm font-semibold tracking-wider text-white uppercase bg-gray-500 rounded-lg shadow-lg active:bg-gray-600 hover:bg-gray-400 hover:-translate-y-1 transform transition focus:outline-none focus:ring focus:ring-offset-2 focus:ring-gray-500 focus:ring-opacity-50 sm:text-base
+  }
 }
