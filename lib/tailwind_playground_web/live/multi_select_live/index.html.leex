@@ -1,0 +1,123 @@
+<div x-data="dropdown()" 
+     x-init="loadOptions()" 
+     class="flex flex-col items-center w-full h-64 mx-auto md:w-1/2">
+  <input name="values" 
+         type="hidden" 
+         x-bind:value="selectedValues()">
+  <div class="relative inline-block w-64">
+      <div class="relative flex flex-col items-center">
+        <!-- BEGIN OF Input ACC -->
+        <div x-on:click="open()" 
+             class="w-full">
+          <div class="flex p-1 my-2 bg-white border border-gray-200 rounded">
+              <div class="flex flex-wrap flex-auto">
+                  <template x-for="(option, index) in selected" :key="options[option].value">
+                    <div class="flex items-center justify-center px-2 py-1 m-1 font-medium text-teal-700 bg-white bg-teal-100 border border-teal-300 rounded-full">
+                      <div class="flex-initial max-w-full text-xs font-normal leading-none" 
+                           x-model="options[option]" 
+                           x-text="options[option].text"></div>
+                        <div class="flex flex-row-reverse flex-auto">
+                            <div x-on:click="remove(index, option)">
+                              <div class="w-6 h-6 fill-current">
+                                <%= TailwindPlaygroundWeb.SvgHelper.close_x_svg() %>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                  </template>
+                  <div x-show="selected.length == 0" 
+                       class="flex-1">
+                      <input placeholder="Select a option"
+                             class="w-full h-full p-1 px-2 text-gray-800 bg-transparent outline-none appearance-none"
+                             x-bind:value="selectedValues()">
+                  </div>
+              </div>
+              <div class="flex items-center w-8 py-1 pl-2 pr-1 text-gray-300 border-l border-gray-200 svelte-1l8159u">
+                <button type="button" 
+                        x-show="isOpen() === true" 
+                        x-on:click="open"
+                        class="w-6 h-6 text-gray-600 outline-none cursor-pointer focus:outline-none">
+                  <div class="w-4 h-4 fill-current">
+                    <%= TailwindPlaygroundWeb.SvgHelper.down_arrow_svg() %>
+                  </div>
+                </button>
+                <button type="button" 
+                        x-show="isOpen() === false" 
+                        @click="close()"
+                        class="w-6 h-6 text-gray-600 outline-none cursor-pointer focus:outline-none">
+                  <div class="w-4 h-4 fill-current">
+                    <%= TailwindPlaygroundWeb.SvgHelper.up_arrow_svg() %>
+                  </div>
+                </button>
+              </div>
+          </div>
+        </div>
+        <div class="w-full px-4">
+          <div x-show.transition.origin.top="isOpen()"
+               class="absolute z-40 w-full overflow-y-auto bg-white rounded shadow top-100 lef-0 max-h-select"
+               x-on:click.away="close()">
+            <div class="flex flex-col w-full">
+              <template x-for="(option, index) in options" :key="option">
+                <div>
+                  <div class="w-full border-b border-gray-100 rounded-t cursor-pointer hover:bg-teal-100"
+                       @click="select(index, $event)">
+                    <div x-bind:class="option.selected ? 'border-teal-600' : ''"
+                         class="relative flex items-center w-full p-2 pl-2 border-l-2 border-transparent">
+                      <div class="flex items-center w-full">
+                        <div class="mx-2 leading-6" 
+                             x-model="option" 
+                             x-text="option.text"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<script>
+function dropdown () {
+  return {
+    options: [],
+    selected: [],
+    show: false,
+    open () {
+      this.show = true
+    },
+    close () {
+      this.show = false
+    },
+    isOpen () { 
+        return this.show === true 
+      },
+    select (index, event) {
+      console.log("index: ", index)
+      console.log("event: ", event.target)
+      if (!this.options[index].selected) {
+        this.options[index].selected = true
+        this.options[index].element = event.target
+        this.selected.push(index)
+      } else {
+        this.selected.splice(this.selected.lastIndexOf(index), 1)
+        this.options[index].selected = false
+      }
+    },
+    remove (index, option) {
+      this.options[option].selected = false
+      this.selected.splice(index, 1)
+    },
+    loadOptions () {
+      this.options = JSON.parse("<%= @array_x %>".replace(/&quot;/g,'"')); 
+    },
+    selectedValues () {
+      return this.selected.map((option) => {
+        return this.options[option].value
+      })
+    }
+  }
+}
+</script>
